@@ -1,5 +1,5 @@
 # File management
-import pickle
+import pickle5 as pickle
 import os
 
 # Data processing
@@ -9,7 +9,6 @@ from collections import defaultdict, Counter
 
 # NLP
 import random
-from scipy import stats
 from collections import defaultdict, Counter
 import scispacy
 import spacy
@@ -27,7 +26,10 @@ import matplotlib.image as mpimg
 
 def read_file(data_dir, data_filename):
     """Reads file in pickle format and dumps data into a Dataframe."""
-    return pd.read_pickle(os.path.join("../" + data_dir, data_filename))
+    with open(os.path.join("../" + data_dir, data_filename), "rb") as fh:
+        data = pickle.load(fh)
+        
+    return data
 
 
 def set_nlp_pipeline():
@@ -123,7 +125,7 @@ def get_corpus_stats(corpus, nlp):
     corpus_stats["en_unique_toks"] = en_unique_toks
     corpus_stats["other_unique_toks"] = other_unique_toks
     corpus_stats["pos_frequencies"] = pos_counter(survey_text)
-    corpus_stats["lexical_density"] = lexical_density(other_stats["pos_frequencies"], survey_text)
+    corpus_stats["lexical_density"] = lexical_density(corpus_stats["pos_frequencies"], survey_text)
     corpus_stats["token_probs"] = get_probs(survey_text)
     corpus_stats["response_lengths"] = avg_response_length(corpus)
     
