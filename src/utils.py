@@ -49,13 +49,26 @@ def set_nlp_pipeline():
 def get_corpus_stats(corpus, nlp):
     """Calculates an array of corpus statistics on the 'text' column, which is the one that contains all the open-ended responses.
     
-    Statistics to be computed:
-    - # of English docs
-    - # of docs in other languages as identified by SpaCy's LanguageDetector()
-    - 
+    Statistics that are computed through this function:
+    - english_docs: Count of English docs
+    - other_lang_docs: Count of docs in other languages as identified by SpaCy's LanguageDetector()
+    - other_langs: Set of the different languages found by LanguageDetector() besides English
+    - all_token_count: Count of all tokens in the corpus
+    - en_token_count: Count of English tokens in the corpus
+    - other_token_count: Count of tokens belonging to the "Other" language category
+    - avg_doc_length: Average document length in tokens
+    - all_type_tok_ratio: Type / Token ratio among all tokens in the corpus
+    - en_type_tok_ratio: Type / Token ratio among English tokens in the corpus
+    - other_type_tok_ratio: Type / Token ratio among tokens belonging to the "Other" language category in the corpus
+    - all_unique_toks: All unique tokens in the corpus
+    - en_unique_toks: All unique English tokens in the corpus
+    - other_unique_toks: All unique tokens belonging to the "Other" language category in the corpus
+    - pos_frequencies: Frequencies of POS tags given the tagged words in the corpus
+    - lexical_density: Proportion of open-class words over all words in the corpus
+    - token_probs: Relative frequencies off all the tokens in the corpus
+    - response_lengths: List of all document lengths measured in tokens
     """
     corpus_stats = {}
-    other_stats = {}
     
     # token count
     all_tok_count = 0
@@ -92,6 +105,8 @@ def get_corpus_stats(corpus, nlp):
                 all_unique_toks.add(tok.lower())
                 other_unique_toks.add(tok.lower())
     
+    # Concatenates all responses in one variable
+    survey_text = " ".join([response for response in corpus])
     
     # consolidates core stats
     corpus_stats["english_docs"] = en_docs
@@ -107,24 +122,21 @@ def get_corpus_stats(corpus, nlp):
     corpus_stats["all_unique_toks"] = all_unique_toks
     corpus_stats["en_unique_toks"] = en_unique_toks
     corpus_stats["other_unique_toks"] = other_unique_toks
+    corpus_stats["pos_frequencies"] = pos_counter(survey_text)
+    corpus_stats["lexical_density"] = lexical_density(other_stats["pos_frequencies"], survey_text)
+    corpus_stats["token_probs"] = get_probs(survey_text)
+    corpus_stats["response_lengths"] = avg_response_length(corpus)
     
-    # other stats
-    survey_text = " ".join([response for response in corpus])
-    other_stats["pos_frequencies"] = pos_counter(survey_text)
-    other_stats["lexical_density"] = lexical_density(other_stats["pos_frequencies"], survey_text)
-    other_stats["token_probs"] = get_probs(survey_text)
-    other_stats["response_lengths"] = avg_response_length(corpus)
-    
-    return corpus_stats, other_stats, other_lang_sents
+    return corpus_stats, other_lang_sents
 
 
 def avg_response_length(corpus):
-    """Calculates the average length of responses in the corpus."""
-    return [len(corpus) / len(response) for response in corpus]
+    """Calculates the length of responses in the corpus."""
+    return [len(response) for response in corpus]
 
 
 def pos_counter(text):
-    """Calculates the relative frequencies of POS tags given the tagged words in the corpus."""
+    """Calculates the frequencies of POS tags given the tagged words in the corpus."""
     pos_count = defaultdict(int)
     for _, pos in pos_tag(word_tokenize(text)):
         pos_count[pos] += 1
@@ -144,9 +156,9 @@ def lexical_density(pos_count, text):
     return lexical_den / len(text)
 
 
-def get_probs(all_text):
+def get_probs(text):
     """Calculates the relative frequencies off all the tokens in the corpus."""
-    counts = Counter(tok.lower() for tok in all_text)
+    counts = Counter(tok.lower() for tok in text)
     total = sum(counts.values())
     probs = {word : count / total for word, count in counts.items()}
     
