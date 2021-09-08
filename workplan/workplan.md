@@ -4,30 +4,16 @@
 
 The following document outlines a high level workplan I suggest following to develop a generic analytics dashboard to visualize key statistics, trends, and patterns around survey data.
 
-The proposed workplan is designed to meet the technical and business requirements highlighted in the "DS Exercise for Juan Jose Roesel Interview" document, which were stated as follows:
+The proposed workplan is designed to meet the technical and business requirements highlighted in the "DS Exercise for Juan Jose Roesel Interview" document and to answer the following questions:
 
-**Key questions:**
+* *What language characteristics distinguish these themes?*
 
-* What kind of visualizations could aid the analyst’s understanding of the language that distinguishes these themes?
+* *What kind of visualizations could aid the analyst’s understanding of the language that distinguishes these themes?*
 
-* What kind of visualizations will help analysts to communicate their findings with our clients?
+* *What kind of visualizations will help analysts to communicate their findings with our clients?*
 
-**Approaches to discuss:**
-* Simple and more complex approaches
-* Human interaction and labeling
-* Machine learning
-* Advanced NLP techniques
 
-**Technical architecture and scalability:**
-While this data represents one project, such a dashboard would need to serve many different projects with different themes. 
-
-Please prepare a draft work plan for how you would approach the task of making such a dashboard usable for all of our analysts regardless of the project they are on.
-
-* What data or other information will you need access to?
-* Who will you need to coordinate with?
-* How will you get feedback?
-
-## Workplan structure
+## **Workplan structure**
 The workplan document contains the following sections:
 
 * EDA and key insights
@@ -38,7 +24,7 @@ The workplan document contains the following sections:
 
 ## **EDA and Key Insights**
 
-I conducted an Exploratory Data Analysis process (see `1-exploratory_data_analysis.ipynb`) and found some insights that could help frame the right technical approach to answer the key questions posited in the interview document.
+I conducted an Exploratory Data Analysis (EDA) process (see `1-exploratory_data_analysis.ipynb`) and found some insights that could help frame the right technical approach to answer the key questions posited in the interview document.
 
 ### General insights
 * There's a total of 4,608 responses and all have been fully recorded.
@@ -70,9 +56,14 @@ I conducted an Exploratory Data Analysis process (see `1-exploratory_data_analys
 
 ## **Technical approaches**
 
-Key question to answer: *"What language characteristics distinguish these themes?"*
+In this section, we will discuss different technical approaches that could provide a compelling answer to the general question: *"What language characteristics distinguish these themes?"*, as well as to the more specific questions:
 
-**Simple and more complex approaches**
+* *What kind of visualizations could aid the analyst’s understanding of the language that distinguishes these themes?*
+
+* *What kind of visualizations will help analysts to communicate their findings with our clients?*
+
+### **Simple and more complex approaches**
+
 * Simple approaches (working primarily with "meaningful" text):
     * Text analytics:
         * Conduct basic text analytics (token frequencies, lexical density, POS tags, etc)
@@ -84,10 +75,14 @@ Key question to answer: *"What language characteristics distinguish these themes
         * Run correlation analysis to find linear relations between features and sentiment labels/scores
     * Feature engineering:
         * Create relevant features that might be useful for uncovering specific language characteristics in these clustered themes
-    * Prepare visualizations:
-        * 
+    * Prepare visualizations: (Audiences: internal / external / both)
+        * Text analytics - Internal
+        * Intertopic Distance MAP (LDA) - Both
+        * Theme distributions across documents - Both
+        * Ranking of dominant themes - Both
+        * Visualization of different cluster cnonfigurations obtained after hyperparameter tuning - Internal
 
-* More complex approaches:
+* More complex approaches (work aimed at reducing noise in data and optimizing model performance):
     * Text preprocessing:
         * Use rule-based methods to identify relevant linguistic phenomena (i.e., word elongation, code-switching, mispellings)
         * Use specialized tools such as [ekphrasis](https://github.com/cbaziotis/ekphrasis) which normalizes and provides annotation for these special features
@@ -102,26 +97,21 @@ Key question to answer: *"What language characteristics distinguish these themes
         * Work with domain experts to label existing theme clusters
         * Explore with semi-supervised, weakly supervised, and active learning methods to automate theme cluster labelling
 
-Taking into account these approaches and the possibilities they enable, I propose the following answers to the key questions posited in the interview document:
+Three separate notebooks were developed to explore some of these technical approaches within the scope of this exercise:
 
-*What kind of visualizations could aid the analyst’s understanding of the language that distinguishes these themes?*
-
-* Dashboard of linguistic phenomena
-    * 
-* Topic modeling dashboard
-    * Intertopic Distance Map
-
-
-*What kind of visualizations will help analysts to communicate their findings with our clients?*
-* WordCloud including sentiment dimension
-* Sentiment spectrum - Buckets of words that are highly correlated with positive sentiment
-* Topic modeling dashboard
-    * Intertopic Distance Map
-* 
-
+* Text analytics: `1-exploratory_data_analysis.ipynb`
+* Topic Modeling: `2-topic_modeling.ipynb`
+* Sentiment analysis: `3-sentiment_analysis.ipynb`
 
 ## **High-level architecture and scalability**
 
+While this data represents one project, such a dashboard would need to serve many different projects with different themes. 
+
+Please prepare a draft work plan for how you would approach the task of making such a dashboard usable for all of our analysts regardless of the project they are on.
+
+* What data or other information will you need access to?
+* Who will you need to coordinate with?
+* How will you get feedback?
 
 
 ## **Timeline**
