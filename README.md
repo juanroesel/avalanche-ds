@@ -1,26 +1,49 @@
 # avalanche-ds
 This repository contains the code and files related to the Data Science exercise developed as part of the job interview process for Avalanche Insights.
 
+## Requirements
+* Interpreter: Python 3.8
+* Have Conda installed locally (see [here](https://docs.conda.io/en/latest/) for installation instructions)
+* Have Jupyter Lab installed locally (see [here](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html) for installation instructions)
+
+
+## Folder structure
+
+** GET TREE STRUCTURE **
+
 ## Instructions
 
 To properly run this notebook, please follow these steps:
 
-1. Navigate to the root folder and set up a virtual environment
-
-```
-$ virtualenv ds-interview
-$ source ds-interview/bin/activate
-```
-2. Install all packages in `requirements.txt`
+1. Navigate to the root folder and set up a conda environment named `ds-interview`
 
 ````
-$ pip3 install -r requirements.txt
+$  conda create -n ds-interview python=3.8
 ````
 
-3. Start a jupyter lab server and connect to the jupyter notebook instance on your browser
+2. Activate the environment
+````
+$ conda activate ds-interview
+````
+
+3. Install all packages in `requirements.txt` (make sure you are at the root folder)
+
+````
+$ python3 -m pip install -r requirements.txt
+````
+
+4. Install the `ipykernel` module, which provides the IPython kernel for Jupyter.
+
+````
+$ python3 -m pip install ipykernel
+````
+
+5. Start a jupyter lab server and connect to the jupyter notebook instance on your browser
 
 ````
 $ jupyter lab
 ````
 
-4. Open the notebook you want to explore by navigating to the `src` directory.
+6. Select the `ds-interview` kernel at the top right hand corner in the Jupyter Lab interface.
+
+7. Open the notebook you want to explore by navigating to the `src` directory.
