@@ -1,11 +1,20 @@
+# File management
+import joblib
+import os
+from datetime import datetime
+
 # Data processing
 import numpy as np
 import pandas as pd
+from collections import defaultdict
 
 # Machine Learning
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.model_selection import GridSearchCV
+
+# BERT
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 
 # Data Viz
 from pprint import pprint
@@ -64,17 +73,17 @@ def create_theme_matrix(X, lda_model, data):
     # index names
     doc_ids = ["Doc" + str(i) for i in range(len(data["text"].dropna()))]
     # Make the pandas dataframe
-    df_document_theme = pd.DataFrame(np.round(lda_output, 2), columns=theme_ids, index=doc_ids)
+    df_document_themes = pd.DataFrame(np.round(lda_output, 2), columns=theme_ids, index=doc_ids)
     # Get dominant theme for each document
-    dominant_theme = np.argmax(df_document_theme.values, axis=1)
-    df_document_theme['dominant_theme'] = dominant_theme
+    dominant_theme = np.argmax(df_document_themes.values, axis=1)
+    df_document_themes['dominant_theme'] = dominant_theme
     
-    return df_document_theme
+    return df_document_themes
 
 
-def get_theme_documents(data, df_document_themes, N=0):
+def get_theme_documents(data, df_document_themes, N):
     """Returns a list of documents relevant to the theme cluster N."""
-    cluster_idx = df_document_themes.groupby("dominant_theme").get_group(n).index.to_list()
+    cluster_idx = df_document_themes.groupby("dominant_theme").get_group(N).index.to_list()
     cluster_idx = [int(idx.strip("Doc")) for idx in cluster_idx]
     theme_docs = [preprocess(text) for i, text in enumerate(data["text"]) if i in cluster_idx]
     
