@@ -52,18 +52,24 @@ $ conda activate ds-interview
 $ python3 -m pip install -r requirements.txt
 ````
 
-4. Install the `ipykernel` module, which provides the IPython kernel for Jupyter.
+4. Install the `ipykernel` module, which provides the IPython kernel for Jupyter
 
 ````
 $ python3 -m pip install ipykernel
 ````
 
-5. Start a jupyter lab server and connect to the jupyter notebook instance on your browser
+5. Add the enviornment `ds-interview` into Jupyer Notebooks
+
+````
+$ python3 -m ipykernel install --user --name=ds-interview
+````
+
+6. Start a jupyter lab server and connect to the jupyter notebook instance on your browser
 
 ````
 $ jupyter lab
 ````
 
-6. Select the `ds-interview` kernel at the top right hand corner in the Jupyter Lab interface.
+7. Select the `ds-interview` kernel at the top right hand corner in the Jupyter Lab interface.
 
-7. Open the notebook you want to explore by navigating to the `src` directory.
+8. Open the notebook you want to explore by navigating to the `src` directory.
