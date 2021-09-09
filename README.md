@@ -9,7 +9,27 @@ This repository contains the code and files related to the Data Science exercise
 
 ## Folder structure
 
-** GET TREE STRUCTURE **
+````
+├── README.md
+├── artifacts
+│   ├── X.joblib
+│   ├── lda_model.joblib
+│   └── vectorizer.joblib
+├── data
+│   └── coded_response_dataframe.pkl
+├── images
+│   └── architecture.png
+├── requirements.txt
+├── src
+│   ├── 1-exploratory_data_analysis.ipynb
+│   ├── 2-topic_modeling.ipynb
+│   ├── 3-sentiment_analysis.ipynb
+│   ├── ml_utils.py
+│   ├── nlp_pipeline.py
+│   └── utils.py
+└── workplan
+    └── workplan.md
+````
 
 ## Instructions
 
