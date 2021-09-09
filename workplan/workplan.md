@@ -64,7 +64,7 @@ In this section, we will discuss different technical approaches that could provi
 
 ### **Simple and more complex approaches**
 
-* Simple approaches (working primarily with "meaningful" text):
+* Simple approaches (working primarily to get enough meaningful insights):
     * Text analytics:
         * Conduct basic text analytics (token frequencies, lexical density, POS tags, etc)
         * Set lexical density threshold to filter "noise" out of responses
@@ -72,15 +72,12 @@ In this section, we will discuss different technical approaches that could provi
         * Run LDA topic modeling to get initial overview of theme clusters
     * Sentiment analysis:
         * Use Pre-trained BERT models to compute sentiment scores on filtered text
-        * Run correlation analysis to find linear relations between features and sentiment labels/scores
-    * Feature engineering:
-        * Create relevant features that might be useful for uncovering specific language characteristics in these clustered themes
+        * Identify highest performing documents based on sentiment
     * Prepare visualizations: (Audiences: internal / external / both)
         * Text analytics - Internal
         * Intertopic Distance MAP (LDA) - Both
         * Theme distributions across documents - Both
         * Ranking of dominant themes - Both
-        * Visualization of different cluster cnonfigurations obtained after hyperparameter tuning - Internal
 
 * More complex approaches (work aimed at reducing noise in data and optimizing model performance):
     * Text preprocessing:
@@ -93,6 +90,9 @@ In this section, we will discuss different technical approaches that could provi
         * Fine-tune BERT sentiment model using Active Learning methods
         * Do fine-grained sentiment analysis with SVM Ranking
         * Test the Pollyanna hypothesis (i.e., natural bias towards positive comments)
+        * Run correlation analysis to find linear relations between features and sentiment labels/scores
+    * Feature engineering:
+        * Create relevant features that might be useful for uncovering specific language characteristics in these clustered themes
     * Apply ML to theme labelling
         * Work with domain experts to label existing theme clusters
         * Explore with semi-supervised, weakly supervised, and active learning methods to automate theme cluster labelling
@@ -109,9 +109,14 @@ While this data represents one project, such a dashboard would need to serve man
 
 Please prepare a draft work plan for how you would approach the task of making such a dashboard usable for all of our analysts regardless of the project they are on.
 
-* What data or other information will you need access to?
-* Who will you need to coordinate with?
-* How will you get feedback?
+
+
+* *What data or other information will you need access to?*
+    * 
+* *Who will you need to coordinate with?*
+    * 
+* *How will you get feedback?*
+    * 
 
 
 ## **Timeline**
