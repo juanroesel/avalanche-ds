@@ -4,7 +4,7 @@
 
 The following document outlines a high level workplan I suggest following to develop a generic analytics dashboard to visualize key statistics, trends, and patterns around survey data.
 
-The proposed workplan is designed to meet the technical and business requirements highlighted in the "DS Exercise for Juan Jose Roesel Interview" document and to answer the following questions:
+The proposed workplan is designed to meet the technical and business requirements highlighted in the *"DS Exercise for Juan Jose Roesel Interview"* document and to answer the following questions:
 
 * *What language characteristics distinguish these themes?*
 
@@ -24,7 +24,7 @@ The workplan document contains the following sections:
 
 ## **EDA and Key Insights**
 
-I conducted an Exploratory Data Analysis (EDA) process (see `1-exploratory_data_analysis.ipynb`) and found some insights that could help frame the right technical approach to answer the key questions posited in the interview document.
+I conducted an Exploratory Data Analysis (EDA) process (see `src/1-exploratory_data_analysis.ipynb`) and found some insights that could help frame the right technical approach to answer the key questions posited in the interview document.
 
 ### General insights
 * There's a total of 4,608 responses and all have been fully recorded.
@@ -64,7 +64,7 @@ In this section, we will discuss different technical approaches that could provi
 
 ### **Simple and more complex approaches**
 
-* Simple approaches (working primarily to get enough meaningful insights):
+* **Simple approaches (working primarily to get enough meaningful insights):**
     * Text analytics:
         * Conduct basic text analytics (token frequencies, lexical density, POS tags, etc)
         * Set lexical density threshold to filter "noise" out of responses
@@ -79,7 +79,7 @@ In this section, we will discuss different technical approaches that could provi
         * Theme distributions across documents - Both
         * Ranking of dominant themes - Both
 
-* More complex approaches (work aimed at reducing noise in data and optimizing model performance):
+* **More complex approaches (work aimed at reducing noise in data and optimizing model performance):**
     * Text preprocessing:
         * Use rule-based methods to identify relevant linguistic phenomena (i.e., word elongation, code-switching, mispellings)
         * Use specialized tools such as [ekphrasis](https://github.com/cbaziotis/ekphrasis) which normalizes and provides annotation for these special features
@@ -109,7 +109,7 @@ While this data represents one project, such a dashboard would need to serve man
 
 With this request in mind, I've designed the following high-level technical architecture, combining AWS Elastic Beanstalk with serverless capabilities, NoSQL databases, and Kubernetes.
 
-[!image architecture]("../images/architecture.png")
+![image architecture](../images/architecture.png)
 
 * *What data or other information will you need access to?*
     * IT/Engineering -  I would need access to company-wide data such as:
@@ -158,7 +158,7 @@ I envision breaking down the development of this POC analytics dashboard into th
 * **Outputs:**
     * POC running in orchestation with other microservices
 
-### Sprint 3
+### Sprint 3
 * **What:** Optimize processes along the ML cycle
 * **How:**
     * Fine-tune existing ML models
