@@ -18,7 +18,7 @@ The workplan document contains the following sections:
 
 * EDA and key insights
 * Technical approaches
-* High-level architecture and scalability
+* High-level architecture
 * Timeline
 
 
@@ -103,21 +103,72 @@ Three separate notebooks were developed to explore some of these technical appro
 * Topic Modeling: `2-topic_modeling.ipynb`
 * Sentiment analysis: `3-sentiment_analysis.ipynb`
 
-## **High-level architecture and scalability**
+## **High-level architecture**
 
 While this data represents one project, such a dashboard would need to serve many different projects with different themes. 
 
-Please prepare a draft work plan for how you would approach the task of making such a dashboard usable for all of our analysts regardless of the project they are on.
+With this request in mind, I've designed the following high-level technical architecture, combining AWS Elastic Beanstalk with serverless capabilities, NoSQL databases, and Kubernetes.
 
-
+[!image architecture]("../images/architecture.png")
 
 * *What data or other information will you need access to?*
-    * 
+    * IT/Engineering -  I would need access to company-wide data such as:
+        * Databases contaning data from past projects
+        * Data regarding platform usage and logs
+    * Marketing / Sales - Get a glimpse into the marketing strategy (Account Management and Marketing Funnels) to frame our prioritization roadmap in such a way that is in alignment with their business targets
 * *Who will you need to coordinate with?*
-    * 
+    * Naturally, this project would require cross-functional support and collaboration across different areas:
+        * I expect to be working closely with Aleksandar to productize the data visualizations generated through the analytics pipeline.
+        * I also would need to collaborate closely with Mark and Raman to devise an MLOPs and deployment roadmap for the POC
+        * I would also value the support of fellow Data Scientists such as Scott to exchange ideas and technical approaches, as well as Malaika's vision into the product roadmap
+        * Finally, the client engagement team would be our closest ally and testers
 * *How will you get feedback?*
-    * 
+    * Internal feedback (2 layers):
+        * Core: Scrum board as central repository of technical feedback
+        * Extended: I would also set up a digital board (i.e., Trello) that everyone at Avalanche can use to throw in ideas on how to improve product usability
+    * External feedback:
+        * I would work closely with the Engineering, Data Science, and Client Engagement teams to schedule Beta tests before deploying to production
+        * In the mid to long-term, I would seek collaborate with the Engineering, Data Science, and Client Engagement teams to integrate tools into the front-end that can help us get real-time feedback from customers and map their satisfaction over time.
 
 
 ## **Timeline**
+
+I envision breaking down the development of this POC analytics dashboard into three main bi-weekly sprints, as follows:
+
+### Sprint 1
+* **What:** Have POC deployed in python-based web interface using Docker for testing purposes
+* **How:**
+    * Define core visualizations with Aleksandar, Malaika, and Client Engagement team
+    * Set up app project using Django and integrate existing code
+    * Set up required AWS resources
+    * Develop required analytics functions
+* **Inputs:**
+    * Expected visualizations and insights
+* **Outputs:**
+    * Analytics dashboard POC deployed on Docker
+
+### Sprint 2
+* **What:** Integrate POC with existing Avalanche IT infrastructure
+* **How:**
+    * Integrate tech stack used
+    * Integrate with Avanlanche's CI/CD pipeline
+    * Integrate feedback gathered along Sprint 1
+* **Inputs:**
+    * Standalone POC deployed in Docker
+* **Outputs:**
+    * POC running in orchestation with other microservices
+
+### Sprint 3
+* **What:** Optimize processes along the ML cycle
+* **How:**
+    * Fine-tune existing ML models
+    * Establish de-noising methods within robust text preprocessing pipelines
+    * Conduct experiments to measure model performances
+    * Standardize CI/CD processes within the scope of model training, development, and deployment
+* **Inputs:**
+    * POC running in orchestation with other microservices
+* **Outputs:**
+    * Analytics Platform v1.0
+    
+
 
