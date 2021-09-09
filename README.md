@@ -35,13 +35,13 @@ This repository contains the code and files related to the Data Science exercise
 
 To properly run this notebook, please follow these steps:
 
-1. Navigate to the root folder and set up a conda environment named `ds-interview`
+1. Clone this repository and navigate to the root folder. Once there, set up a conda environment named `ds-interview`
 
 ````
 $  conda create -n ds-interview python=3.8
 ````
 
-2. Activate the environment
+2. Activate the virtual environment
 ````
 $ conda activate ds-interview
 ````
